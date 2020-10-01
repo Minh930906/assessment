@@ -24,4 +24,6 @@ var numbers = {
   1000000000: "billion",
 };
 
-export const spellNum = (num) => {};
+export const spellNum = (num) => {
+  return numbers[num];
+};
