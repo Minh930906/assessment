@@ -28,6 +28,34 @@ const spellNumBetweenTenAndTwenty = (num, remainder) => {
   return (numbers[num] = numbers[remainder].concat("teen"));
 };
 
+const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
+  if (remainder == 0) {
+    if (num / divisor == 8) {
+      return numbers[num / divisor].concat("y");
+    } else {
+      return numbers[num / divisor].concat("ty");
+    }
+  } else {
+    if (Math.floor(num / divisor) == 8) {
+      return numbers[Math.floor(num / divisor)].concat(
+        "y-",
+        numbers[remainder]
+      );
+    } else if (
+      (20 < num && num < 30) ||
+      (30 < num && num < 40) ||
+      (50 < num && num < 60)
+    ) {
+      return numbers[num - remainder].concat("-", numbers[remainder]);
+    } else {
+      return numbers[Math.floor(num / divisor)].concat(
+        "ty-",
+        numbers[remainder]
+      );
+    }
+  }
+};
+
 export const spellNum = (num) => {
   for (var iterNum = 0; iterNum <= num; iterNum++) {
     if (iterNum in numbers) {
@@ -45,6 +73,14 @@ export const spellNum = (num) => {
 
     if (10 < iterNum && iterNum < 20 && !(iterNum in numbers)) {
       numbers[iterNum] = spellNumBetweenTenAndTwenty(iterNum, remainder);
+    }
+
+    if (20 < iterNum && iterNum < 100) {
+      numbers[iterNum] = spellNumBetweenTwentyAndNinetyNine(
+        remainder,
+        iterNum,
+        firstDivideNum
+      );
     }
   }
   return numbers[num];
