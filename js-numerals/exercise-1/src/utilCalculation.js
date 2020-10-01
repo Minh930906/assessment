@@ -29,14 +29,14 @@ const spellNumBetweenTenAndTwenty = (num, remainder) => {
 };
 
 const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
-  if (remainder == 0) {
-    if (num / divisor == 8) {
+  if (remainder === 0) {
+    if (num / divisor === 8) {
       return numbers[num / divisor].concat("y");
     } else {
       return numbers[num / divisor].concat("ty");
     }
   } else {
-    if (Math.floor(num / divisor) == 8) {
+    if (Math.floor(num / divisor) === 8) {
       return numbers[Math.floor(num / divisor)].concat(
         "y-",
         numbers[remainder]
@@ -66,7 +66,7 @@ export const spellNum = (num) => {
       firstDivideNum = firstDivideNum.concat("0");
     }
 
-    if (iterNum >= 10000) {
+    if (iterNum >= 1000) {
       firstDivideNum = 1000;
     }
 
@@ -87,7 +87,7 @@ export const spellNum = (num) => {
     if (100 < iterNum) {
       var quotient = iterNum / firstDivideNum;
       numbers[iterNum] =
-        remainder == 0
+        remainder === 0
           ? numbers[Math.floor(quotient)].concat(" ", numbers[firstDivideNum])
           : numbers[Math.floor(quotient)].concat(
               " ",

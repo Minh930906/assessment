@@ -5,7 +5,7 @@ import { spellNum } from "./utilCalculation";
 function App() {
   return (
     <div className="App">
-      <h1></h1>
+      <h1>{spellNum(111115)}</h1>
     </div>
   );
 }
