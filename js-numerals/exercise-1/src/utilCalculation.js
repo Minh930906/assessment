@@ -82,6 +82,19 @@ export const spellNum = (num) => {
         firstDivideNum
       );
     }
+
+    if (100 < iterNum) {
+      var quotient = iterNum / firstDivideNum;
+      numbers[iterNum] =
+        remainder == 0
+          ? numbers[Math.floor(quotient)].concat(" ", numbers[firstDivideNum])
+          : numbers[Math.floor(quotient)].concat(
+              " ",
+              numbers[firstDivideNum],
+              " ",
+              spellNum(remainder)
+            );
+    }
   }
   return numbers[num];
 };
