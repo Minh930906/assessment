@@ -76,6 +76,16 @@ describe(
       expect(spellNum(1000)).toBe("one thousand");
       expect(spellNum(1000000)).toBe("one million");
     });
+
+    it("spell minus numbers", () => {
+      expect(spellNum(-1156)).toBe("minus one thousand one hundred fifty-six");
+      expect(spellNum(-548863)).toBe(
+        "minus five hundred forty-eight thousand eight hundred sixty-three"
+      );
+      expect(spellNum(-1156812)).toBe(
+        "minus one million one hundred fifty-six thousand eight hundred twelve"
+      );
+    });
   },
   describe("check input", () => {
     it("check if input is valid", () => {

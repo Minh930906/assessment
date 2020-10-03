@@ -55,15 +55,27 @@ const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
 };
 
 export const spellNum = (num) => {
+  let tempNum;
+
   if (isNaN(num)) {
     return "The input is invalid";
+  }
+
+  if (num === "-0") {
+    return numbers[0];
   }
 
   if (num in numbers) {
     return numbers[num];
   }
 
-  for (let iterNum = 0; iterNum <= num; iterNum++) {
+  if (num < 0) {
+    tempNum = num * -1;
+  } else {
+    tempNum = num;
+  }
+
+  for (let iterNum = 0; iterNum <= tempNum; iterNum++) {
     if (iterNum in numbers) {
       continue;
     }
@@ -106,5 +118,5 @@ export const spellNum = (num) => {
     }
   }
 
-  return numbers[num];
+  return num > 0 ? numbers[num] : "minus ".concat(numbers[tempNum]);
 };
