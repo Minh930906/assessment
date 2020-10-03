@@ -1,4 +1,4 @@
-var numbers = {
+let numbers = {
   0: "zero",
   1: "one",
   2: "two",
@@ -23,6 +23,8 @@ var numbers = {
   1000000: "million",
   1000000000: "billion",
 };
+
+let divider = [10, 100, 1000, 1000000];
 
 const spellNumBetweenTenAndTwenty = (num, remainder) => {
   return (numbers[num] = numbers[remainder].concat("teen"));
@@ -53,24 +55,29 @@ const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
 };
 
 export const spellNum = (num) => {
-  for (var iterNum = 0; iterNum <= num; iterNum++) {
+  if (!Number.isInteger(num)) {
+    return "The input is invalid";
+  }
+
+  if (num in numbers) {
+    return numbers[num];
+  }
+
+  for (let iterNum = 0; iterNum <= num; iterNum++) {
     if (iterNum in numbers) {
       continue;
     }
 
-    var numberLength = iterNum.toString().length - 1;
+    let firstDivideNum;
 
-    var firstDivideNum = "1";
-
-    for (var x = 0; x < numberLength; x++) {
-      firstDivideNum = firstDivideNum.concat("0");
+    for (let index = divider.length - 1; index >= 0; index--) {
+      if (Math.floor(iterNum / divider[index]) >= 1) {
+        firstDivideNum = divider[index];
+        break;
+      }
     }
 
-    if (iterNum >= 1000) {
-      firstDivideNum = 1000;
-    }
-
-    var remainder = iterNum % firstDivideNum;
+    let remainder = iterNum % firstDivideNum;
 
     if (10 < iterNum && iterNum < 20 && !(iterNum in numbers)) {
       numbers[iterNum] = spellNumBetweenTenAndTwenty(iterNum, remainder);
@@ -84,8 +91,9 @@ export const spellNum = (num) => {
       );
     }
 
+    let quotient = iterNum / firstDivideNum;
+
     if (100 < iterNum) {
-      var quotient = iterNum / firstDivideNum;
       numbers[iterNum] =
         remainder === 0
           ? numbers[Math.floor(quotient)].concat(" ", numbers[firstDivideNum])
@@ -97,5 +105,6 @@ export const spellNum = (num) => {
             );
     }
   }
+
   return numbers[num];
 };

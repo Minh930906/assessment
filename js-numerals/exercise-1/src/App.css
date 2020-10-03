@@ -1,3 +1,24 @@
 * {
   margin: 0;
 }
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 100%;
+  height: 60vh;
+}
+
+.app__input {
+  font-size: 30px;
+}
+
+.app__form {
+  position: relative;
+}
+
+.app__button {
+  font-size: 30px;
+}
