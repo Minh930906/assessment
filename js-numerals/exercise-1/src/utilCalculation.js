@@ -55,7 +55,7 @@ const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
 };
 
 export const spellNum = (num) => {
-  if (!Number.isInteger(num)) {
+  if (isNaN(num)) {
     return "The input is invalid";
   }
 
