@@ -54,6 +54,16 @@ const spellNumBetweenTwentyAndNinetyNine = (remainder, num, divisor) => {
   }
 };
 
+const spellWholeNumber = (number) => {
+  if (number === 100) {
+    return "one hundred";
+  } else if (number === 1000) {
+    return "one thousand";
+  } else if (number === 1000000) {
+    return "one million";
+  }
+};
+
 export const spellNum = (num) => {
   let tempNum;
 
@@ -63,6 +73,10 @@ export const spellNum = (num) => {
 
   if (num === "-0") {
     return numbers[0];
+  }
+
+  if (num === 100 || num === 1000 || num === 1000000) {
+    return spellWholeNumber(num);
   }
 
   if (num in numbers) {
