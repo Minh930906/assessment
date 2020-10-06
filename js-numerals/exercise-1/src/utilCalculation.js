@@ -71,6 +71,9 @@ export const spellNum = (num) => {
 
   if (num < 0) {
     tempNum = num * -1;
+    if (tempNum in numbers) {
+      return (numbers[num] = "minus ".concat(numbers[tempNum]));
+    }
   } else {
     tempNum = num;
   }
